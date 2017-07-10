@@ -6,10 +6,12 @@ import (
 	"html/template"
 	"io"
 	"io/ioutil"
+	"math"
 	//"log"
 	"encoding/json"
 	"net/http"
 	"net/url"
+	"path"
 	//"strconv"
 	//"strings"
 
@@ -46,6 +48,9 @@ type Restaturant struct {
 	MenuDrinks string `json:"menu_drinks"`
 	WidgetLink string `json:"widget_link"`
 	Favourite bool
+	PDFName string
+	NewRow bool
+	EndRow bool
 
 }
 
@@ -68,6 +73,17 @@ func ShowMenus(c echo.Context) error {
 
 	NumRests := len(rests)
 	for i := 0; i < NumRests; i++ {
+		if math.Mod(float64(i), 3) == 0 {
+			rests[i].NewRow = true
+			rests[i].EndRow = false
+		} else if math.Mod(float64(i), 3) == 2 {
+			rests[i].NewRow = false
+			rests[i].EndRow = true
+		} else {
+			rests[i].NewRow = false
+			rests[i].EndRow = false
+		}
+		rests[i].PDFName = path.Base(rests[i].MenuBreakfast)
 		rests[i].Name = html.UnescapeString(rests[i].Name)
 		switch rests[i].Name {
 		case "The Dining Room":

@@ -7,14 +7,22 @@
         <div class="container">
             <div class="row">
                 <h1>Better Menus</h1>
-            <div class="row">
 {{ range . }}
-                <div class="col-md-3">
-                    <p><a class="btn {{ if .Favourite }}btn-primary{{ else }}btn-default{{end}}" target="_blank" href="https://foodatsky.com{{ .MenuBreakfast }}">{{ if .Favourite }}<span class="glyphicon glyphicon-star"></span> {{end}}{{ .Name | html }}</a></p>
-                    <p>{{ .MenuBreakfast }}</p>
+            {{ if .NewRow }}<div class="row">{{end}}
+                <div class="col-md-4">
+                    <div class="panel {{ if .Favourite }}panel-primary{{ else }}panel-default{{end}}">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ if .Favourite }}<span class="glyphicon glyphicon-star"></span> {{end}}{{ .Name | html }}</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <a class="" target="_blank" href="https://foodatsky.com{{ .MenuBreakfast }}">{{ .PDFName }}</a>
+                            <p>
+                        </div>
+                    </div>
                 </div>
+            {{ if .EndRow }}</div>{{end}}
 {{ end }}
-            </div>
         </div>
     </body>
 </html>
