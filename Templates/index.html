@@ -11,6 +11,7 @@
 {{ range . }}
                 <div class="col-md-3">
                     <p><a class="btn {{ if .Favourite }}btn-primary{{ else }}btn-default{{end}}" target="_blank" href="https://foodatsky.com{{ .MenuBreakfast }}">{{ if .Favourite }}<span class="glyphicon glyphicon-star"></span> {{end}}{{ .Name | html }}</a></p>
+                    <p>{{ .MenuBreakfast }}</p>
                 </div>
 {{ end }}
             </div>
