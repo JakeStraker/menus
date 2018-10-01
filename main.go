@@ -58,7 +58,7 @@ func ShowMenus(c echo.Context) error {
 	Form := url.Values{}
 	Form.Add("getRestaurants", "true")
 	Form.Add("location", "3")
-	resp, err := http.PostForm("http://foodatsky.com/sites-menus/", Form)
+	resp, err := http.PostForm("https://foodatsky.com/sites-menus/", Form)
 	if err != nil {
 		return c.String(http.StatusInternalServerError, err.Error())
 	}
